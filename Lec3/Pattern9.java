@@ -1,6 +1,6 @@
-package Lec2;
+package Lec3;
 
-public class Pattern4 {
+public class Pattern9 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -16,20 +16,20 @@ public class Pattern4 {
 			int csp = 1;
 			while(csp <= nsp)
 			{
-				System.out.print(" ");
+				System.out.print("  ");
 				csp++;
 			}
 			
 			int cst = 1;
 			while(cst <= nst)
 			{
-				System.out.print("*");
+				System.out.print("* ");
 				cst++;
 			}
 			
 			
 			//Update
-			nst++;
+			nst += 2;
 			nsp--;
 			row++;
 			System.out.println();
