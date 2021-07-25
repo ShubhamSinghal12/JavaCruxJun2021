@@ -93,7 +93,7 @@ public class StringSubString {
 	
 	public static String reverseByWords2(String s)
 	{
-		String rs[] = s.split(" *");
+		String rs[] = s.split(" ");
 //		System.out.println(rs[0]);
 		String ans = "";
 		for(int i = rs.length-1; i>=0;i--)
