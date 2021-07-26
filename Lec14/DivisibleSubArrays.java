@@ -42,7 +42,7 @@ public class DivisibleSubArrays {
 		long ans = 0;
 		for (int i = 0; i < hole.length; i++) {
 			if (hole[i] >= 2) {
-				int p = hole[i];
+				long p = hole[i];
 				ans = ans + (p * (p - 1)) / 2;
 			}
 		}
