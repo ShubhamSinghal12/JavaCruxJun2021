@@ -2,21 +2,22 @@ package Lec26;
 
 public class MyQueue {
 	
-	int[] arr;
-	int front;
-	int size;
+	protected int[] arr;
+	protected int front;
+	protected int size;
 	
-	MyQueue(int n)
+	public MyQueue(int n)
 	{
 		arr = new int[n];
 		front = 0;
 		size = 0;
 	}
-	MyQueue()
+	public MyQueue()
 	 {
 		 this(10);
 	 }
 	
+	//O(1)
 	public boolean isFull()
 	{
 		if(size == arr.length)
@@ -25,6 +26,7 @@ public class MyQueue {
 			return false;
 	}
 	
+	//O(1)
 	public boolean isEmpty()
 	{
 		if(size == 0)
@@ -35,21 +37,25 @@ public class MyQueue {
 			return false;
 	}
 	
+	//O(1)
 	public int size()
 	{
 		return size;
 	}
 	
+	//O(1)
 	public void enqueue(int ele) throws Exception
 	{
 		if(isFull())
 		{
 			throw new Exception("Queue overflow");
 		}
+		
 		arr[(size+front)%arr.length] = ele;
 		size++;
 	}
 	
+	//O(1)
 	public int peek() throws Exception  // get_front
 	{
 		if(isEmpty())
@@ -59,6 +65,7 @@ public class MyQueue {
 		return arr[front];
 	}
 	
+	//O(1)
 	public int dequeue() throws Exception
 	{
 		if(isEmpty())
@@ -72,12 +79,17 @@ public class MyQueue {
 		return ele;	
 	}
 	
+	//O(n)
 	public void display()
 	{
 		for(int i = front;  i < front+size; i++)
 		{
 			System.out.print(arr[i%arr.length]+" ");
 		}
+//		for(int i = 0; i < size; i++)
+//		{
+//			System.out.print(arr[(front+i)%arr.length]+" ");
+//		}
 		System.out.println();
 	}
 	 

@@ -2,8 +2,8 @@ package Lec26;
 
 public class MyStack {
 
-	int[] arr;
-	int top;
+	protected int[] arr;
+	protected int top;
 	
 	public MyStack(int size)
 	{
@@ -15,6 +15,7 @@ public class MyStack {
 		this(10);
 	}
 	
+	//O(1)
 	public boolean isFull()
 	{
 		if(top == arr.length-1)
@@ -23,6 +24,7 @@ public class MyStack {
 			return false;
 	}
 	
+	//O(1)
 	public void push(int ele) throws Exception
 	{
 		if(isFull())
@@ -34,7 +36,7 @@ public class MyStack {
 		arr[top] = ele;
 	}
 	
-	
+	//O(1)
 	public boolean isEmpty()
 	{
 		if(top == -1)
@@ -43,6 +45,7 @@ public class MyStack {
 			return false;
 	}
 	
+	//O(1)
 	public int peek() throws Exception
 	{
 		if(isEmpty())
@@ -52,6 +55,7 @@ public class MyStack {
 		return arr[top];
 	}
 	
+	//O(1)
 	public int pop() throws Exception
 	{
 		if(isEmpty())
@@ -64,11 +68,13 @@ public class MyStack {
 		return ele;
 	}
 	
+	//O(1)
 	public int size()
 	{
 		return top+1;
 	}
 	
+	//O(n)
 	public void display()
 	{
 		for(int i = top; i >= 0; i--)
