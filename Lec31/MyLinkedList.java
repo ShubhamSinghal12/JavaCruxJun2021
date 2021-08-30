@@ -236,6 +236,50 @@ public class MyLinkedList {
 		
 	}
 	
+	
+	public void reverseData()
+	{
+		int i = 0;
+		int j = size()-1;
+		while(i<j)
+		{
+			Node a = getNodeAt(i);
+			Node b = getNodeAt(j);
+			
+			int t = a.data;
+			a.data = b.data;
+			b.data = t;
+			
+			i++;
+			j--;
+		}
+	}
+	
+	public void reverseData2()
+	{
+		reverseD2(head,1,size());
+	}
+	
+	private Node reverseD2(Node n,int count,int size)
+	{
+		if(n == null)
+			return head;
+		else
+		{
+			Node a = reverseD2(n.next,count+1,size);
+			
+			if(count > (size+1)/2)
+			{
+				int t = a.data;
+				a.data = n.data;
+				n.data = t;
+			}
+			
+			return a.next;
+		}
+		
+		
+	}
 	public void reverse_k(int k)
 	{
 		head = reverse_k(head,k);
@@ -279,6 +323,84 @@ public class MyLinkedList {
 		}
 		
 		return slow.data;
+	}
+	
+	
+	
+	public static MyLinkedList merge(MyLinkedList a,MyLinkedList b)
+	{
+		MyLinkedList result = new MyLinkedList(); 
+		Node i = a.head;
+		Node j = b.head;
+		
+		while(i != null && j != null)
+		{
+			if(i.data < j.data)
+			{
+				result.addLast(i.data);
+				i = i.next;
+			}
+			else
+			{
+				result.addLast(j.data);
+				j = j.next;
+			}
+		}
+		
+		while(j!=null)
+		{
+			result.addLast(j.data);
+			j = j.next;
+		}
+		while(i != null)
+		{
+			result.addLast(i.data);
+			i = i.next;
+		}
+		return result;
+	}
+	
+	private Node midNode()
+	{
+		Node slow = head;
+		Node fast = head;
+		while(fast.next != null && fast.next.next != null)
+		{
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		return slow;
+	}
+	
+	public void mergerSort()
+	{
+		MyLinkedList ll = mergeHelper();
+		this.head = ll.head;
+	}
+	
+	private MyLinkedList mergeHelper()
+	{
+		
+		if(size() <= 1)
+		{
+			MyLinkedList ll = new MyLinkedList();
+			ll.head = this.head;
+			return ll;
+		}
+		
+		Node mid = midNode();
+		MyLinkedList a = new MyLinkedList();
+		MyLinkedList b = new MyLinkedList();
+		
+		System.out.println(head.data+" "+mid.data);
+		a.head = this.head;
+		b.head = mid.next;
+		mid.next = null;
+		
+		MyLinkedList fh = a.mergeHelper();
+		MyLinkedList sh = b.mergeHelper();
+		
+		return merge(fh, sh);
 	}
 	
 	
