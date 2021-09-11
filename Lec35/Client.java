@@ -13,14 +13,18 @@ public class Client {
 //		System.out.println(bt.max());
 //		System.out.println(bt.dia2());
 		
-		int[] in = {50,20,70,60,100,40,90,80};
-		int[] pre = {100,20,50,60,70,40,80,90};
-		
+//		int[] in = {10,20,30,40,50,60,70};
+//		int[] pre = {40,20,10,30,60,50,70};
+//		
+		int[] in = {15,20,50,10,25,30,35,40};
+		int[] pre = {10,20,15,50,30,25,40,35};
 		BinaryTree bt = new BinaryTree();
 		bt.createTreeUsingPreandIn(pre, in);
 		bt.display();
-		bt.leftTreeView();
+//		bt.leftTreeView();
 		System.out.println(bt.isBalanced2());
+		System.out.println(bt.isBST3());
+		System.out.println(bt.BSTinBT());
 
 	}
 

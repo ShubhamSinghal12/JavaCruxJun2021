@@ -447,8 +447,152 @@ public class BinaryTree {
 	
 	
 	
+	public boolean isBST1()
+	{
+		return isBST1(this.root,Integer.MIN_VALUE,Integer.MAX_VALUE);
+	}
+	
+	private boolean isBST1(Node n,int low,int high)
+	{
+		if(n == null)
+		{
+			return true;
+		}
+		else
+		{
+			if(n.data < low || n.data > high)
+				return false;
+			else
+			{
+				return isBST1(n.left,low,n.data) && isBST1(n.right,n.data,high);
+			}
+		}
+	}
 	
 	
+	public int min()
+	{
+		return min(this.root);
+	}
+	
+	private int min(Node n)
+	{
+		if(n == null)
+		{
+			return Integer.MAX_VALUE;
+		}
+		else
+		{
+			return Math.min(n.data, Math.min(min(n.left), min(n.right)));
+		}
+	}
+	
+	public boolean isBST2()
+	{
+		return isBST2(this.root);
+	}
+	
+	private boolean isBST2(Node n)
+	{
+		if(n == null)
+			return true;
+		else
+		{
+			boolean isb = true;
+			isb = isb && isBST2(n.left);
+			isb = isb && isBST2(n.right);
+			if(isb)
+			{
+				int max = max(n.left);
+				int min = min(n.right);
+				if(n.data < max || n.data > min)
+					isb = false;
+			}
+			return isb;
+		}
+	}
+	
+	private class isBST{
+		
+		boolean isb = true;
+		int min = Integer.MAX_VALUE;
+		int max = Integer.MIN_VALUE;
+		
+	}
+	
+	public boolean isBST3()
+	{
+		return isBST3(this.root).isb;
+	}
+	
+	private isBST isBST3(Node n)
+	{
+		if(n == null)
+			return new isBST();
+		else
+		{
+			isBST ans = new isBST();
+			isBST l = isBST3(n.left);
+			isBST r = isBST3(n.right);
+			
+			boolean b = true;
+			if(n.data < l.max || n.data > r.min)
+				b = false;
+			
+			ans.isb = b && l.isb && r.isb;
+			
+			ans.max = Math.max(n.data,Math.max(l.max, r.max));
+			ans.min = Math.min(n.data,Math.min(l.min, r.min));
+			
+			return ans;
+		}
+	}
+	
+private class CBSTinBT{
+		
+		boolean isb = true;
+		int min = Integer.MAX_VALUE;
+		int max = Integer.MIN_VALUE;
+		int size = 0;
+		
+	}
+	
+	public int BSTinBT()
+	{
+		return BSTinBT(this.root).size;
+	}
+	
+	private CBSTinBT BSTinBT(Node n)
+	{
+		if(n == null)
+			return new CBSTinBT();
+		else
+		{
+			CBSTinBT ans = new CBSTinBT();
+			CBSTinBT l = BSTinBT(n.left);
+			CBSTinBT r = BSTinBT(n.right);
+			
+			boolean b = true;
+			if(n.data < l.max || n.data > r.min)
+				b = false;
+			
+			ans.isb = b && l.isb && r.isb;
+			
+			ans.max = Math.max(n.data,Math.max(l.max, r.max));
+			ans.min = Math.min(n.data,Math.min(l.min, r.min));
+			
+			if(ans.isb)
+			{
+				ans.size = l.size+r.size+1;
+			}
+			else
+			{
+				ans.size = Math.max(l.size, r.size);
+			}
+			
+			return ans;
+		}
+	}
 	
 
 }
