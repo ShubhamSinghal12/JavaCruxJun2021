@@ -22,9 +22,13 @@ public class Client {
 		bt.createTreeUsingPreandIn(pre, in);
 		bt.display();
 //		bt.leftTreeView();
-		System.out.println(bt.isBalanced2());
-		System.out.println(bt.isBST3());
-		System.out.println(bt.BSTinBT());
+//		System.out.println(bt.isBalanced2());
+//		System.out.println(bt.isBST3());
+//		System.out.println(bt.BSTinBT());
+		System.out.println();
+		bt.verticalOrder();
+		System.out.println();
+		bt.TopView();
 
 	}
 

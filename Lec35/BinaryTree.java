@@ -1,8 +1,10 @@
 package Lec35;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 
 
@@ -589,10 +591,80 @@ private class CBSTinBT{
 			{
 				ans.size = Math.max(l.size, r.size);
 			}
-			
 			return ans;
 		}
 	}
 	
+	
+	public void verticalOrder()
+	{
+		TreeMap<Integer, LinkedList<Integer>> map = new TreeMap<>();
+		verticalOrder(this.root,0,map);
+		for(int val: map.keySet())
+		{
+			System.out.println(map.get(val));
+		}
+	}
+	
+	private void verticalOrder(Node n, int lvl, TreeMap<Integer,LinkedList<Integer>> map)
+	{
+		if(n == null)
+			return;
+		else
+		{
+			if(map.containsKey(lvl))
+			{
+				map.get(lvl).add(n.data);
+			}
+			else
+			{
+				map.put(lvl, new LinkedList<>(Arrays.asList(n.data)));
+			}
+			
+			verticalOrder(n.left, lvl-1, map);
+			verticalOrder(n.right, lvl+1, map);
+		}
+	}
+	
 
+	private class TopPair{
+		int data;
+		int depth;
+		
+		TopPair(int d,int de)
+		{
+			data =d;
+			depth =de;
+		}
+	}
+	
+	public void TopView()
+	{
+		TreeMap<Integer, TopPair> map = new TreeMap<>();
+		TopView(this.root,0,0,map);
+		for(int val: map.keySet())
+		{
+			System.out.println(map.get(val).data);
+		}
+	}
+	
+	private void TopView(Node n, int lvl, int depth,TreeMap<Integer,TopPair> map)
+	{
+		if(n == null)
+			return;
+		else
+		{
+			if(map.containsKey(lvl) && map.get(lvl).depth > depth)
+			{
+				map.put(lvl, new TopPair(n.data,depth));
+			}
+			else
+			{
+				map.put(lvl, new TopPair(n.data,depth));
+			}
+			
+			TopView(n.left, lvl-1, depth+1,map);
+			TopView(n.right, lvl+1, depth+1,map);
+		}
+	}
 }
