@@ -1,5 +1,6 @@
 package Lec44;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -201,4 +202,209 @@ public class Graph {
 		return false;
 	}
 
+	
+	
+	
+	public void BFST()
+	{
+		HashSet<Integer> visited = new HashSet<>();
+		Queue<Integer> qt = new LinkedList<>();
+		
+		for(int n: graph.keySet())
+		{
+			if(visited.contains(n))
+				continue;
+			else
+				qt.add(n);
+			
+			while(!qt.isEmpty())
+			{
+				int r = qt.remove();
+				
+				
+				if(visited.contains(r))
+				{
+					continue;
+				}
+				else
+				{
+					visited.add(r);
+					System.out.print(r+" ");
+					for(int nbbr: graph.get(r).keySet())
+					{
+						if(!visited.contains(nbbr)){
+							qt.add(nbbr);
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	
+	public void DFST()
+	{
+		HashSet<Integer> visited = new HashSet<>();
+		Stack<Integer> qt = new Stack<>();
+		
+		for(int n: graph.keySet())
+		{
+			if(visited.contains(n))
+				continue;
+			else
+				qt.push(n);
+			
+			while(!qt.isEmpty())
+			{
+				int r = qt.pop();
+				
+				
+				if(visited.contains(r))
+				{
+					continue;
+				}
+				else
+				{
+					visited.add(r);
+					System.out.print(r+" ");
+					for(int nbbr: graph.get(r).keySet())
+					{
+						if(!visited.contains(nbbr)){
+							qt.add(nbbr);
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	
+	
+	public boolean isCycle()
+	{
+		HashSet<Integer> visited = new HashSet<>();
+		Queue<Integer> qt = new LinkedList<>();
+		
+		for(int n: graph.keySet())
+		{
+			if(visited.contains(n))
+				continue;
+			else
+				qt.add(n);
+			
+			while(!qt.isEmpty())
+			{
+				int r = qt.remove();
+				
+				
+				if(visited.contains(r))
+				{
+					return true;
+				}
+				else
+				{
+					visited.add(r);
+					for(int nbbr: graph.get(r).keySet())
+					{
+						if(!visited.contains(nbbr)){
+							qt.add(nbbr);
+						}
+					}
+				}
+			}
+		}
+		return false;	
+	}
+	
+	
+	public int noOfConnectedComponenets()
+	{
+		HashSet<Integer> visited = new HashSet<>();
+		Queue<Integer> qt = new LinkedList<>();
+		
+		int count = 0;
+		for(int n: graph.keySet())
+		{
+			if(visited.contains(n))
+				continue;
+			else
+				qt.add(n);
+			
+			count++;
+			while(!qt.isEmpty())
+			{
+				int r = qt.remove();
+				
+				
+				if(visited.contains(r))
+				{
+					continue;
+				}
+				else
+				{
+					visited.add(r);
+					for(int nbbr: graph.get(r).keySet())
+					{
+						if(!visited.contains(nbbr)){
+							qt.add(nbbr);
+						}
+					}
+				}
+			}
+		}
+		return count;	
+	}
+	
+	public boolean isConnected()
+	{
+		return noOfConnectedComponenets() == 1;
+	}
+	
+	public boolean isTree()
+	{
+		return !isCycle() && isConnected();
+	}
+	
+	public ArrayList<ArrayList<Integer>> connectedComponents(){
+		
+		HashSet<Integer> visited = new HashSet<>();
+		Queue<Integer> qt = new LinkedList<>();
+		ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+		
+		for(int n: graph.keySet())
+		{
+			if(visited.contains(n))
+				continue;
+			else
+				qt.add(n);
+			
+			ArrayList<Integer> component = new ArrayList<Integer>();
+			while(!qt.isEmpty())
+			{
+				int r = qt.remove();
+				
+				
+				if(visited.contains(r))
+				{
+					continue;
+				}
+				else
+				{
+					visited.add(r);
+					component.add(r);
+					for(int nbbr: graph.get(r).keySet())
+					{
+						if(!visited.contains(nbbr)){
+							qt.add(nbbr);
+						}
+					}
+				}
+			}
+			ans.add(component);
+		}
+		return ans;
+		
+	}
+	
+	
 }

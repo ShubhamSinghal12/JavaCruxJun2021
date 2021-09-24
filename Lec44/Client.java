@@ -15,7 +15,7 @@ public class Client {
 		gp.addEdge(5, 7, 14);
 		
 		gp.display();
-//		gp.removeEdge(4, 5);
+		gp.removeEdge(4, 5);
 //		gp.removeVertex(4);
 		System.out.println("-------");
 		gp.display();
@@ -23,6 +23,18 @@ public class Client {
 //		System.out.println(gp.containsEdge(4, 5));
 		System.out.println(gp.hasPathDFS(1, 6));
 		
+		gp.DFST();
+		System.out.println();
+		System.out.println("--------");
+		
+//		gp.removeEdge(2, 3);
+//		gp.removeEdge(5, 6);
+		
+		System.out.println(gp.isCycle());
+		System.out.println(gp.noOfConnectedComponenets());
+		System.out.println(gp.isConnected());
+//		System.out.println(gp.isTree());
+		System.out.println(gp.connectedComponents());
 //		gp.printPath(1, 6);
 		
 
